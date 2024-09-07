@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import PropTypes from 'prop-types';
+import PropTypes, {element} from 'prop-types';
 
 export default function TextForm(props) {
     const [text, setText] = useState('');
@@ -26,9 +26,7 @@ export default function TextForm(props) {
     }
 
     const handleCopy = () => {
-        const text = document.getElementById("myBox");
-        text.select();
-        navigator.clipboard.writeText(text.value);
+        navigator.clipboard.writeText(text);
     }
 
     const handleExtraSpaces = () => {
@@ -53,23 +51,23 @@ export default function TextForm(props) {
                 <button className="btn btn-primary" onClick={handleUpClick}>
                     Convert to Uppercase
                 </button>
-                <button className="btn btn-secondary mx-2" onClick={handleLoClick}>
+                <button className="btn btn-secondary mx-1 my-1" onClick={handleLoClick}>
                     Convert to Lowercase
                 </button>
-                <button className="btn btn-secondary mx-2" onClick={handleClearClick}>
+                <button className="btn btn-secondary mx-1 my-1" onClick={handleClearClick}>
                     Clear Text
                 </button>
-                <button className="btn btn-secondary mx-2" onClick={handleCopy}>
+                <button className="btn btn-secondary mx-1 my-1" onClick={handleCopy}>
                     Copy Text
                 </button>
-                <button className="btn btn-secondary mx-2" onClick={handleExtraSpaces}>
+                <button className="btn btn-secondary mx-1 my-1" onClick={handleExtraSpaces}>
                     Remove Extra Spaces
                 </button>
             </div>
 
             <div className="container my-3">
                 <h2>Your text summary</h2>
-                <p>{text.length > 0 ? text.split(" ").length : 0} words and {text.length} characters</p>
+                <p>{text.length > 0 ? text.split(/\s+/).filter((element) => {return element.length !== 0}).length : 0} words and {text.length} characters</p>
                 <p>{0.008 * text.split(" ").length} Minutes read</p>
                 <h2>Preview</h2>
                 <p>{text.length > 0 ?text: 'Enter something in the textbox  above to preview here' }</p>
