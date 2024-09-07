@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import PropTypes from 'prop-types';
 
 export default function TextForm(props) {
-    const [text, setText] = useState('Enter the text here');
+    const [text, setText] = useState('');
     const {mode ,title = 'Title list',showAlert} = props;
     const handleUpClick = () => {
         const newText = text.toUpperCase();
@@ -42,6 +42,7 @@ export default function TextForm(props) {
                 <div className="my-3">
                 <textarea
                     className="form-control"
+                    placeholder={'Enter the text here'}
                     value={text}
                     onChange={handleOnChange}
                     style={{backgroundColor: mode === 'dark' ? 'gray' : 'white', color: mode === 'dark' ? 'white' : '#042743'}}
