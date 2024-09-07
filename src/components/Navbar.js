@@ -20,13 +20,16 @@ export default function Navbar(props) {
                             <a className="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                     </ul>
+                    <div className="form-check form-switch">
+                        <input className="form-check-input" type="checkbox" role="switch" id="mode"
+                               onChange={toggleMode}/>
+                        <label className={`form-check-label text-${mode === 'light' ? 'dark' : 'light'}`}
+                               htmlFor="mode">Dark
+                            mode</label>
+                    </div>
                 </div>
 
-                <div className="form-check form-switch">
-                    <input className="form-check-input" type="checkbox" role="switch" id="mode" onChange={toggleMode}/>
-                    <label className={`form-check-label text-${mode === 'light' ? 'dark' : 'light'}`} htmlFor="mode">Dark
-                        mode</label>
-                </div>
+
             </div>
         </nav>
     )
