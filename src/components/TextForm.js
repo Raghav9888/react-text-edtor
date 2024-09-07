@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 
 export default function TextForm(props) {
     const [text, setText] = useState('Enter the text here');
-    const {mode ,title = 'Title list'} = props;
+    const {mode ,title = 'Title list',showAlert} = props;
     const handleUpClick = () => {
         const newText = text.toUpperCase();
         setText(newText);
+        showAlert('Converted to Uppercase', 'success');
     }
 
     const handleOnChange = (event) => {
@@ -36,14 +37,14 @@ export default function TextForm(props) {
     }
     return (
         <>
-            <div className="container">
+            <div className="container" >
                 <h1 className='text-center'>{title}</h1>
                 <div className="my-3">
                 <textarea
                     className="form-control"
                     value={text}
                     onChange={handleOnChange}
-                    style={{backgroundColor: mode === 'dark' ? 'gray' : 'white', color: mode === 'dark' ? 'white' : 'black'}}
+                    style={{backgroundColor: mode === 'dark' ? 'gray' : 'white', color: mode === 'dark' ? 'white' : '#042743'}}
                     id="myBox"
                     rows="8"
                 ></textarea>
@@ -67,10 +68,10 @@ export default function TextForm(props) {
 
             <div className="container my-3">
                 <h2>Your text summary</h2>
-                <p>{text.split(" ").length} words and {text.length} characters</p>
+                <p>{text.length > 0 ? text.split(" ").length : 0} words and {text.length} characters</p>
                 <p>{0.008 * text.split(" ").length} Minutes read</p>
                 <h2>Preview</h2>
-                <p>{text}</p>
+                <p>{text.length > 0 ?text: 'Enter something in the textbox  above to preview here' }</p>
             </div>
         </>
     );
